@@ -2,17 +2,21 @@ import React from 'react';
 import {
   ImageList,
   ImageListItem,
-  ImageListItemBar
+  ImageListItemBar,
 } from '@mui/material';
 import { Video } from '../types/video';
+import { useResponsiveColumns } from '../hooks/use-responsive-columns';
 
 interface Props {
   videos: Video[];
 }
 
 const VideoGallery: React.FC<Props> = ({ videos }) => {
+
+    const cols = useResponsiveColumns();
+
   return (
-    <ImageList cols={4} gap={16}>
+    <ImageList cols={cols} gap={16}>
       {videos.map((video) => (
         <ImageListItem key={video.id}>
           <img
