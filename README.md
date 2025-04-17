@@ -54,6 +54,7 @@ npm run dev
 |---------------------------|--------|
 | **Debounced search**      | Skipped to prioritize core sorting/pagination logic and URL sync. Would add using `useDeferredValue` or `lodash.debounce`. |
 | **Tag filtering**         | Would require backend filtering logic (e.g., parsing `tags[]` query param) and a UI for multi-select or chip input.|
+| **Video details modal/page** | Due to time constraints, the detailed view triggered by clicking a video thumbnail is omitted. Would implement this using a modal or dedicated route that fetches and displays full video metadata using the `id` from the thumbnail. |
 | **Date range filter**     | Useful, but would require an additional date picker + backend parsing logic. |
 | **Visual design polish**  | The layout is clean and responsive but doesn’t focus on theming, animations, or pixel perfection — intentionally kept minimalist due to the time constraint. |
 
