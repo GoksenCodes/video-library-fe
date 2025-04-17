@@ -8,7 +8,7 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({ value, onChange }) => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
       <TextField
         label="Search"
         variant="outlined"
