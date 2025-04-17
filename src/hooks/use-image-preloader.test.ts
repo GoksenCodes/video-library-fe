@@ -8,7 +8,7 @@ beforeAll(() => {
     set src(_url: string) {
       // Simulate image loading async
       setTimeout(() => {
-        this.onload(); 
+        this.onload();
       }, 0);
     }
   }
@@ -22,9 +22,7 @@ beforeAll(() => {
 
 describe('useImagePreloader', () => {
   it('returns false initially, then true when all images load', async () => {
-    const { result } = renderHook(() =>
-      useImagePreloader(['url1.jpg', 'url2.jpg'])
-    );
+    const { result } = renderHook(() => useImagePreloader(['url1.jpg', 'url2.jpg']));
 
     expect(result.current).toBe(false);
 

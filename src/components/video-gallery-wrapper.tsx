@@ -11,22 +11,13 @@ import { useVideoSearchParams } from '../hooks/use-video-search-params';
 import SortMenu from './sort-menu';
 
 const VideoGalleryWrapper: React.FC = () => {
-    const {
-        page,
-        setPage,
-        search,
-        setSearch,
-        sort_by,
-        order,
-        setSorting
-      } = useVideoSearchParams();
-      
+  const { page, setPage, search, setSearch, sort_by, order, setSorting } = useVideoSearchParams();
 
-    const { data, isLoading, isError } = useQuery<PaginatedResponse>({
+  const { data, isLoading, isError } = useQuery<PaginatedResponse>({
     queryKey: ['videos', { page, search, sort_by, order }],
     queryFn: () => fetchVideos({ page, search, sort_by, order }),
     placeholderData: (prev) => prev
-    });
+  });
 
   const { viewState } = useVideoGalleryState({ data, isLoading, isError });
 
@@ -38,24 +29,21 @@ const VideoGalleryWrapper: React.FC = () => {
 
       <Box
         sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap', // allows responsive stacking
-            gap: 2,
-            mb: 2
-        }} >
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap', // allows responsive stacking
+          gap: 2,
+          mb: 2
+        }}
+      >
         <SearchBar value={search} onChange={setSearch} />
         <SortMenu sortBy={sort_by} order={order} onChange={setSorting} />
       </Box>
 
       {renderVideoState(viewState, data)}
       {data && (
-        <PaginationControls
-          currentPage={page}
-          totalPages={data.meta.pages}
-          onChange={setPage}
-        />
+        <PaginationControls currentPage={page} totalPages={data.meta.pages} onChange={setPage} />
       )}
     </>
   );

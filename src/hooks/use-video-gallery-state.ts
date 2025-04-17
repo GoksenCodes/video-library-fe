@@ -8,11 +8,7 @@ interface UseVideoGalleryStateParams {
   isError: boolean;
 }
 
-export function useVideoGalleryState({
-  data,
-  isLoading,
-  isError
-}: UseVideoGalleryStateParams) {
+export function useVideoGalleryState({ data, isLoading, isError }: UseVideoGalleryStateParams) {
   const imageUrls = data?.data.map((v) => v.thumbnail_url) || [];
   const imagesLoaded = useImagePreloader(imageUrls);
   const viewState = useVideoViewState({ isLoading, isError, imageReady: imagesLoaded });

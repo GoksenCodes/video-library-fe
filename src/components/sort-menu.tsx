@@ -2,7 +2,6 @@ import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Box } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 
-
 interface Props {
   sortBy: string;
   order: string;
@@ -22,7 +21,7 @@ const SortMenu: React.FC<Props> = ({ sortBy, order, onChange }) => {
   const currentValue = `${sortBy}_${order}`;
 
   return (
-    <Box >
+    <Box>
       <FormControl size="small">
         <InputLabel id="sort-select-label">Sort</InputLabel>
         <Select
