@@ -10,8 +10,6 @@ export interface FetchVideosParams {
 }
 
 export const fetchVideos = async (params: FetchVideosParams = {}): Promise<PaginatedResponse> => {
-  const response = await axios.get<PaginatedResponse>('http://localhost:3001/videos', {
-    params
-  });
-  return response.data;
+    const response = await axios.get('http://localhost:3001/videos', { params });
+    return response.data;
 };
