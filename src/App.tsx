@@ -1,62 +1,28 @@
 import React from 'react';
-import {
-  Container,
-  Typography,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  Alert,
-  Skeleton
-} from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { fetchVideos } from './api/videos-api-client';
 import { PaginatedResponse } from './types/paginated-response';
+import { useImagePreloader } from './hooks/use-image-preloader';
+import { useVideoViewState } from './hooks/use-video-view-state';
+import { renderVideoState } from './utils/render-video-state';
 
 const App: React.FC = () => {
-  const { data: videos, isLoading, isError } = useQuery<PaginatedResponse>({
+  const { data, isLoading, isError } = useQuery<PaginatedResponse>({
     queryKey: ['videos'],
     queryFn: () => fetchVideos()
   });
+
+  const imageUrls = data?.data.map((v) => v.thumbnail_url) || [];
+  const imagesLoaded = useImagePreloader(imageUrls);
+  const viewState = useVideoViewState({ isLoading, isError, imageReady: imagesLoaded });
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
         Video Library
       </Typography>
-
-      {isLoading && (
-        <ImageList cols={4} gap={16}>
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Skeleton
-              key={i}
-              variant="rectangular"
-              width="100%"
-              height={200}
-              sx={{ borderRadius: 1 }}
-            />
-          ))}
-        </ImageList>
-      )}
-
-      {isError && (
-        <Alert severity="error" sx={{ mt: 2 }}>
-          Failed to load videos. Please try again later.
-        </Alert>
-      )}
-
-      {!isLoading && !isError && (
-        <ImageList cols={4} gap={16}>
-          {videos!.data.map((video) => (
-            <ImageListItem key={video.id}>
-              <img
-                src={video.thumbnail_url}
-                alt={video.title}
-              />
-              <ImageListItemBar title={video.title} />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      )}
+      {renderVideoState(viewState, data)}
     </Container>
   );
 };
