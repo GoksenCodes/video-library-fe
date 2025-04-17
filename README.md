@@ -1,12 +1,60 @@
-# React + Vite
+# Video Library Dashboard – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the Video Library Dashboard. It's built with **React**, **TypeScript**, **Vite**, **Material UI**, and **TanStack Query (React Query)**. It communicates with a Node.js + SQLite backend to display, search, sort, and paginate video data.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Paginated video listing with thumbnail previews
+- Search by title (URL-synced)
+- Sorting options: Newest, Oldest, A–Z, Z–A (URL-synced)
+- Pagination controls (URL-synced)
+- Loading skeletons + error states
+- Responsive grid layout with dynamic column count
+- Deep-linking support via URL query params
+- Modular, testable architecture (hooks, components, utils)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Stack
+
+- React + TypeScript
+- Vite
+- React Query (TanStack)
+- Material UI
+- React Router v6
+- JSDOM + Testing Library + Vitest (for unit testing)
+
+---
+
+## Setup Instructions
+
+```bash
+# Install dependencies
+npm install
+
+# Start the frontend server
+npm run dev
+```
+
+---
+
+## Project Structure Highlights
+
+- components/ – Reusable UI components like VideoGallery, SearchBar, SortMenu
+- hooks/ – Custom hooks for reusable state and logic (useVideoSearchParams, useImagePreloader)
+- utils/ – Pure helper functions like renderVideoState
+- types/ – Shared TypeScript types
+- api/ – API client for calling the backend
+
+## What Is Omitted & Why
+
+| Feature                   | Reason |
+|---------------------------|--------|
+| **Debounced search**      | Skipped to prioritize core sorting/pagination logic and URL sync. Would add using `useDeferredValue` or `lodash.debounce`. |
+| **Tag filtering**         | Would require backend filtering logic (e.g., parsing `tags[]` query param) and a UI for multi-select or chip input.|
+| **Date range filter**     | Useful, but would require an additional date picker + backend parsing logic. |
+| **Visual design polish**  | The layout is clean and responsive but doesn’t focus on theming, animations, or pixel perfection — intentionally kept minimalist due to the time constraint. |
+
+
