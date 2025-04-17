@@ -24,7 +24,15 @@ describe('renderVideoState', () => {
   it('renders VideoGallery when ready and data is available', () => {
     const mockData: PaginatedResponse = {
       data: [
-        { id: 'v1', title: 'Test Video', thumbnail_url: '', created_at: '', duration: 0, views: 0, tags: [] }
+        {
+          id: 'v1',
+          title: 'Test Video',
+          thumbnail_url: '',
+          created_at: '',
+          duration: 0,
+          views: 0,
+          tags: []
+        }
       ],
       meta: { page: 1, limit: 10, total: 1, pages: 1 }
     };
