@@ -36,6 +36,9 @@ npm install
 
 # Start the frontend server
 npm run dev
+
+# Run tests
+npm test
 ```
 
 ---
